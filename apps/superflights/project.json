@@ -1,0 +1,53 @@
+{
+  "name": "superflights",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/superflights/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/superflights",
+        "main": "apps/superflights/src/main.ts",
+        "tsConfig": "apps/superflights/tsconfig.app.json",
+        "assets": ["apps/superflights/src/assets"],
+        "webpackConfig": "apps/superflights/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "superflights:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "superflights:build:development"
+        },
+        "production": {
+          "buildTarget": "superflights:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/superflights/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
