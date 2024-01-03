@@ -1,0 +1,53 @@
+{
+  "name": "passengers",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/passengers/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/passengers",
+        "main": "apps/passengers/src/main.ts",
+        "tsConfig": "apps/passengers/tsconfig.app.json",
+        "assets": ["apps/passengers/src/assets"],
+        "webpackConfig": "apps/passengers/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "passengers:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "passengers:build:development"
+        },
+        "production": {
+          "buildTarget": "passengers:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/passengers/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
