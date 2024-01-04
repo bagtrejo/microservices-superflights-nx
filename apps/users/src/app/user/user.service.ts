@@ -4,7 +4,8 @@ import { UserDTO } from './dto/user.dto';
 import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { IUser, USER } from '@superflights/shared';
+import { IUser } from '@superflights/shared';
+import { USER } from '../common/models/models';
 
 
 @Injectable()
