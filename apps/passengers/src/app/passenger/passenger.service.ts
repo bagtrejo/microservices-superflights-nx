@@ -2,8 +2,8 @@ import { HttpStatus, Injectable } from '@nestjs/common';
 import { PassengerDTO } from './dto/passenger.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { PASSENGER } from './common/models/models';
 import { IPassenger } from '@superflights/shared';
+import { PASSENGER } from '../common/models/models';
 
 @Injectable()
 export class PassengerService {
